@@ -1,0 +1,70 @@
+{
+  "models": [
+    {
+      "name": "qwen2.5-0.5b-baseline",
+      "model_path": "unsloth/Qwen2.5-0.5B-Instruct",
+      "model_type": "unsloth_fast_language_model",
+      "lora_path": null,
+      "max_seq_length": 2048,
+      "load_in_4bit": false,
+      "dtype": null,
+      "use_chat_template": true,
+      "unsloth_chat_template": "chatml"
+    },
+    {
+      "name": "qwen2.5-0.5b-LuxIT-large",
+      "model_path": "unsloth/Qwen2.5-0.5B-Instruct",
+      "model_type": "unsloth_fast_language_model",
+      "lora_path": "../FineTuning_Experiments/output_qwen3_06B_large_v1/final_model_qwen",
+      "max_seq_length": 2048,
+      "load_in_4bit": false,
+      "dtype": null,
+      "use_chat_template": true,
+      "unsloth_chat_template": null
+    }
+  ],
+  "tasks": [
+    {
+      "task_type": "intent_classification",
+      "dataset_path": "./benchmarks/IC",
+      "label_column": "label",
+      "text_column": "text",
+      "text_column_2": null,
+      "labels": ["affirm", "ask_transfer_charge", "check_balance", "check_earnings", "deny", "goodbye", "greet", "pay_cc", "search_transactions", "thankyou", "transfer_money", "check_recipients", "ask_for_atm", 
+      "ask_for_bank", "schedule_appointment", "open_account", "close_account", "order_card", "make_standing_order", "cancel_standing_order", "cancel_bank_transfer", "increase_card_limit", "decrease_card_limit", 
+      "block_card", "change_address", "apply_for_loan", "pay_off_loan", "ask_for_document"]
+    },
+    {
+      "task_type": "rte",
+      "dataset_path": "./benchmarks/RTE",
+      "label_column": "label",
+      "text_column": "sentence1",
+      "text_column_2": "sentence2",
+      "labels": [0, 1]
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "dataset_path": "./benchmarks/SA",
+      "label_column": "label",
+      "text_column": "text",
+      "text_column_2": null,
+      "labels": [0, 1, 2]
+    },
+    {
+      "task_type": "sst",
+      "dataset_path": "./benchmarks/SST2",
+      "label_column": "label",
+      "text_column": "text",
+      "text_column_2": null,
+      "labels": [0, 1]
+    },
+    {
+      "task_type": "wnli",
+      "dataset_path": "./benchmarks/WNLI",
+      "label_column": "label",
+      "text_column": "sentence1",
+      "text_column_2": "sentence2",
+      "labels": [0, 1]
+    }
+  ]
+}

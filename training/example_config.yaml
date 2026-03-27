@@ -1,0 +1,79 @@
+# Mistral-7b-instruct Fine-tuning Configuration
+# This file contains all configurable parameters for training
+
+model:
+  model_name: "unsloth/mistral-7b-instruct-v0.3"
+  max_seq_length: 2048
+  load_in_4bit: false
+  load_in_8bit: false
+  full_finetuning: false
+
+  # LoRA Configuration
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+  use_gradient_checkpointing: "unsloth"
+  random_state: 3407
+  use_rslora: false
+
+training:
+  # Dataset
+  dataset_name: "./data/datasets/LuxIT_large_training.jsonl"
+
+  # Output directories
+  output_dir: "./output_mistral-7b-instruct-v0.3_large_v1"
+
+  # Training hyperparameters
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 12
+  gradient_accumulation_steps: 8    # Total effective batch = 32
+  #warmup_steps: 100
+  warmup_ratio: 0.03
+  num_train_epochs: 2
+  max_steps: -1  # Set to -1 to use num_train_epochs instead
+  learning_rate: 0.0001 # or 0.0002
+  weight_decay: 0.01
+
+  # Logging and saving
+  logging_steps: 200
+  eval_steps: 500
+  save_steps: 500
+  save_total_limit: 3
+
+  # Evaluation
+  eval_strategy: "steps"
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  load_best_model_at_end: true
+
+  # Optimization V100 Specific
+  optim: "adamw_8bit"
+  lr_scheduler_type: "cosine"
+  fp16: true
+  bf16: false
+
+  # Data splits
+  validation_split: 0.05
+  test_split: 0.03
+
+  # Other settings
+  seed: 3407
+  dataloader_num_workers: 4
+  remove_unused_columns: true
+
+  # Resume training (set to checkpoint path to resume)
+  resume_from_checkpoint: null
+
+  # Weights & Biases integration
+  use_wandb: true
+  wandb_project: "Luxembourgish-finetuning"
+  wandb_run_name: "Mistral-7b-2ep-masking-large-001"  # Will auto-generate if not specified
