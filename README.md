@@ -575,10 +575,10 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 If you use this pipeline or the resulting datasets/models in your research, please cite:
 
 ```bibtex
-@misc{valline2025luxitluxembourgishinstructiontuning,
+@misc{valline2026luxitluxembourgishinstructiontuning,
       title={LuxIT: A Luxembourgish Instruction Tuning Dataset from Monolingual Seed Data}, 
-      author={Julian Valline and Cedric Lothritz and Jordi Cabot},
-      year={2025},
+      author={Julian Valline and Cedric Lothritz and Siwen Guo and Jordi Cabot},
+      year={2026},
       eprint={2510.24434},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
